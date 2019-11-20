@@ -158,7 +158,7 @@ class extractPatch:
                 poly_label = tile_box.intersects(poly)
                 if poly_label == True:
                     box_label = True
-                    ov_reg = tile_box.intersection(poly).buffer(0)
+                    ov_reg = tile_box.intersection(poly)
                     ov += ov_reg.area/tile_box.area
 
             if box_label == True:
