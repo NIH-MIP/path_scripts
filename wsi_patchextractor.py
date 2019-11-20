@@ -70,7 +70,7 @@ class extractPatch:
 
                         # grab tile coordinates
                         tile_coords = tiles.get_tile_coordinates(tile_lvls.index(lvl), (x, y))
-                        save_ends = '%.0f'%(tiles._l0_l_downsamples[tile_coords[1]]*tile_coords[2][0]) + "-" + '%.0f'%(tiles._l0_l_downsamples[tile_coords[1]]*tile_coords[2][1])
+                        save_coords = str(tile_coords[0][0]) + "-" + str(tile_coords[0][1]) + "_" + '%.0f'%(tiles._l0_l_downsamples[tile_coords[1]]*tile_coords[2][0]) + "-" + '%.0f'%(tiles._l0_l_downsamples[tile_coords[1]]*tile_coords[2][1])
 
                         # label tile based on xml region membership
                         if os.path.exists(os.path.join(self.file_location, self.xml_file)):
@@ -85,12 +85,12 @@ class extractPatch:
                                 tile_label['NA'] = 1
                             tile_size = tiles.get_tile_dimensions(tile_lvls.index(lvl), (x, y))
                             tile_pull = tiles.get_tile(tile_lvls.index(lvl), (x, y))
-                            self.save_to_disk(tile_pull=tile_pull, save_ends=save_ends, lvl=lvl, tile_label=tile_label, tile_coords=tile_coords, tile_size=tile_size, physSize=physSize)
+                            self.save_to_disk(tile_pull=tile_pull, save_coords=save_coords, lvl=lvl, tile_label=tile_label, tile_size=tile_size, physSize=physSize)
                         else:
                             if len(tile_label)>0:
                                 tile_size = tiles.get_tile_dimensions(tile_lvls.index(lvl), (x, y))
                                 tile_pull = tiles.get_tile(tile_lvls.index(lvl), (x, y))
-                                self.save_to_disk(tile_pull=tile_pull, save_ends=save_ends, lvl=lvl, tile_label=tile_label, tile_coords=tile_coords, tile_size=tile_size, physSize=physSize)
+                                self.save_to_disk(tile_pull=tile_pull, save_coords=save_coords, lvl=lvl, tile_label=tile_label, tile_size=tile_size, physSize=physSize)
 
             else:
                 print("WARNING: YOU ENTERED AN INCORRECT MAGNIFICATION LEVEL")
@@ -168,7 +168,7 @@ class extractPatch:
         #   plt.plot(*poly.exterior.xy) and plt.plot(*tile_box.exterior.xy)
         return tile_label
 
-    def save_to_disk(self, tile_pull, save_ends, lvl, tile_label, tile_coords, tile_size, physSize):
+    def save_to_disk(self, tile_pull, save_coords, lvl, tile_label, tile_size, physSize):
         if tile_size != (physSize, physSize):
             tile_pull = Image.fromarray(cv2.copyMakeBorder(np.array(tile_pull), 0, physSize - tile_size[1], 0, physSize - tile_size[0],cv2.BORDER_REFLECT))
         # check whitespace amount
@@ -179,13 +179,12 @@ class extractPatch:
             label_text += '-' + key + "-" + '%.2f' % (value)
 
         tile_savename = self.save_name + "_" + str(lvl) + "_" \
-                        + str(tile_coords[0][0]) + "-" + str(tile_coords[0][1]) + "_" \
-                        + save_ends + "_" \
+                        + save_coords + "_" \
                         + "ws-" + '%.2f' % (ws) \
                         + "_" + label_text
 
-        tile_pull.save(os.path.join(self.save_location, str(lvl) + "x", tile_savename + ".png"))
-        # print(tile_savename)
+        # tile_pull.save(os.path.join(self.save_location, str(lvl) + "x", tile_savename + ".png"))
+        print(tile_savename)
         return
 
 
