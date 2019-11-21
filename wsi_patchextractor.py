@@ -183,8 +183,8 @@ class extractPatch:
                         + "ws-" + '%.2f' % (ws) \
                         + "_" + label_text
 
-        # tile_pull.save(os.path.join(self.save_location, str(lvl) + "x", tile_savename + ".png"))
-        print(tile_savename)
+        tile_pull.save(os.path.join(self.save_location, str(lvl) + "x", tile_savename + ".png"))
+        # print(tile_savename)
         return
 
 
