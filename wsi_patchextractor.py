@@ -169,6 +169,7 @@ class extractPatch:
         return tile_label
 
     def save_to_disk(self, tile_pull, save_coords, lvl, tile_label, tile_size, physSize):
+        # edge tiles will not be correct size (too small), so we reflect image data until correct size
         if tile_size != (physSize, physSize):
             tile_pull = Image.fromarray(cv2.copyMakeBorder(np.array(tile_pull), 0, physSize - tile_size[1], 0, physSize - tile_size[0],cv2.BORDER_REFLECT))
         # check whitespace amount
