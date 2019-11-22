@@ -52,7 +52,7 @@ class extractPatch:
         #only do this if xml exists, if it does spit a warning that all tiles will be saved
         if os.path.exists(os.path.join(self.file_location,self.xml_file)):
             # pull xml data - remember vertices always correspond to lowest level
-            regions, region_labels = self.get_regions(os.path.join(self.file_location,self.xml_file),nolabel=True)
+            regions, region_labels = self.get_regions(os.path.join(self.file_location,self.xml_file),nolabel=self.nolabel)
         else:
             print("WARNING! xml file not found. extracting all tiles and assigning label = NA")
 
