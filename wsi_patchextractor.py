@@ -44,7 +44,7 @@ class extractPatch:
         physSize = round(self.save_image_size*acq_mag/base_mag)
 
         # grab tiles accounting for the physical size we need to pull for standardized tile size across studies
-        tiles = DeepZoomGenerator(oslide, tile_size=physSize-2*self.pixel_overlap*acq_mag/base_mag, overlap=self.pixel_overlap*acq_mag/base_mag, limit_bounds=self.limit_bounds)
+        tiles = DeepZoomGenerator(oslide, tile_size=physSize-2*round(self.pixel_overlap*acq_mag/base_mag), overlap=self.pixel_overlap*acq_mag/base_mag, limit_bounds=self.limit_bounds)
 
         # calculate the effective magnification at each level of tiles, determined from base magnification
         tile_lvls = tuple(base_mag/(tiles._l_z_downsamples[i]*tiles._l0_l_downsamples[tiles._slide_from_dz_level[i]]) for i in range(0,tiles.level_count))
