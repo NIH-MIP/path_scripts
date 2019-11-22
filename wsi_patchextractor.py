@@ -24,7 +24,7 @@ class extractPatch:
         self.save_name = 'TCGA-2F-A9KQ-01Z-00-DX1'
         self.mag_extract = [5,10,20] # specify which magnifications you wish to pull images from
         self.save_image_size = 300   # specify image size to be saved (note this is the same for all magnifications)
-        self.pixel_overlap = 0       # specify the level of pixel overlap, note this will operate at highest magnification
+        self.pixel_overlap = 0       # specify the level of pixel overlap in your saved images
         self.limit_bounds = True     # this is weird, dont change it
         self.write_all = False       # default is to only write patches that overlap with xml regions (if no xml provided, all patches written)
         self.nolabel = True          # if all regions in an annotation file belong to the same class, they are labeled as 'tumor'
@@ -44,7 +44,7 @@ class extractPatch:
         physSize = round(self.save_image_size*acq_mag/base_mag)
 
         # grab tiles accounting for the physical size we need to pull for standardized tile size across studies
-        tiles = DeepZoomGenerator(oslide, tile_size=physSize, overlap=self.pixel_overlap, limit_bounds=self.limit_bounds)
+        tiles = DeepZoomGenerator(oslide, tile_size=physSize-2*self.pixel_overlap*acq_mag/base_mag, overlap=self.pixel_overlap*acq_mag/base_mag, limit_bounds=self.limit_bounds)
 
         # calculate the effective magnification at each level of tiles, determined from base magnification
         tile_lvls = tuple(base_mag/(tiles._l_z_downsamples[i]*tiles._l0_l_downsamples[tiles._slide_from_dz_level[i]]) for i in range(0,tiles.level_count))
