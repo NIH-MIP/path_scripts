@@ -183,7 +183,7 @@ class extractPatch:
                         + save_coords + "_" \
                         + "ws-" + '%.2f' % (ws) \
                         + "_" + label_text
-
+        tile_pull = tile_pull.resize(size=(self.save_image_size, self.save_image_size), resample=Image.ANTIALIAS)
         tile_pull.save(os.path.join(self.save_location, str(lvl) + "x", tile_savename + ".png"))
         # print(tile_savename)
         return
