@@ -24,10 +24,10 @@ class makeMap:
         # self.save_location = args.save_location
         # self.master_pred = args.master_pred
         # self.coded_filenames = args.coded_filenames
-        self.image_locations = 'M:/Stephanie_Harmon/Projects_AI/CCF/CCF'
+        self.image_locations = '/path/to/svs/imgs'
         self.has_xml = True
-        self.save_location = 'C:/Users/harmonsa/Documents/test_maps'
-        self.master_pred = 'C:/Users/harmonsa/Documents/prediction_file_example.csv'
+        self.save_location = 'path/to/test_maps'
+        self.master_pred = 'path/to/prediction_file_example.csv'
         self.coded_filenames = True # for TCGA work, this is FALSE because data was already anon
         # this is not working right now, will produce ground truth map of annotations
         self.stride_ratio = 2
