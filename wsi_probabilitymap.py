@@ -28,6 +28,12 @@ class makeMap:
         self.has_xml = True
         self.save_location = 'path/to/test_maps'
         self.master_pred = 'path/to/prediction_file_example.csv'
+        # THIS PREDICTION FILE IS A CSV WITH THE FOLLOWING FORMAT
+        # mag, output/file/location/
+        # example for 3 res:
+        # 10.0, /my/output/file/for/10x/inference.csv
+        # 5.0, /my/output/file/for/5x/inference.csv
+        # 2.5, /my/output/file/for/2.5x/inference.csv
         self.coded_filenames = True # for TCGA work, this is FALSE because data was already anon
         # this is not working right now, will produce ground truth map of annotations
         self.stride_ratio = 2
