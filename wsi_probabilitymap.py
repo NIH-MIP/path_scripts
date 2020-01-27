@@ -34,7 +34,7 @@ class makeMap:
         # 10.0, /my/output/file/for/10x/inference.csv
         # 5.0, /my/output/file/for/5x/inference.csv
         # 2.5, /my/output/file/for/2.5x/inference.csv
-        self.coded_filenames = True # for TCGA work, this is FALSE because data was already anon
+        self.coded_filenames = True # for TCGA work this is FALSE because data was already anon
         # this is not working right now, will produce ground truth map of annotations
         self.stride_ratio = 2
         self.writemask = False
