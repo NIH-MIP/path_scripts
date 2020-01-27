@@ -2,10 +2,13 @@
 
 wsi_patchextractor.py = extract patches at user-specified magnifications with flexibility to accept .xml files (author @sharm)
 
-wsi_probabilitymap.py = create probability maps from multi-mag trained algorithms
+wsi_probabilitymap.py = create probability maps from multi-mag trained algorithms (author @sharm)
 
-utils.py = project dependencies (anon, etc)
-
+utils.py for probability map (author @sharm)
+ 
+  
+   
+    
 .
 .
 .
