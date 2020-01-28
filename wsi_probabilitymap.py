@@ -106,9 +106,7 @@ class makeMap:
             mag = pred_i['mag']
             print(str(mag)+' - '+pred_i['file'])
             df_i = pd.read_csv(pred_i['file'],sep=',',header=0)
-            # YOU WILL NEED TO CHANGE THIS IF YOU CHANGE YOUR NAMING CONVENTION
-            # df_i['RP'], df_i['block'], df_i['mag'], df_i['loc'], df_i['size'], df_i['ws'], df_i['label'] = df_i[
-            #     'img_name'].str.split('_', expand=True)
+            # YOU WILL NEED TO CHANGE THE NEXT TWO LINES DEPENDING ON YOUR NAMING CONVENTION
             new_df = df_i['img_name'].str.split('_', expand=True)
             new_df = new_df.rename(columns={0: 'patient', 1: 'block', 2: 'mag', 3: 'loc', 4: 'size', 5: 'ws', 6: 'label'})
             df_i = pd.merge(df_i,new_df,left_index=True,right_index=True)
