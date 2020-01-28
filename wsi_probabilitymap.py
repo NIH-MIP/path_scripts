@@ -90,7 +90,7 @@ class makeMap:
                     lvl_img = self.make_level_img(base_dim=base_dim, phys_size=phys_size, block_preds=lvl_block, image_name=image_name, level_name = lvl)
                     base_img +=lvl_img
 
-                base_img = base_img/3
+                base_img = base_img/all_preds.__len__()
                 slideimg = Image.fromarray(np.uint8(base_img * 255))
                 slideimg = slideimg.convert('L')
                 slideimg.save(os.path.join(self.save_location, image_name + '_avg.jpeg'))
