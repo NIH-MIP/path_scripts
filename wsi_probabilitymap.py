@@ -36,7 +36,8 @@ class makeMap:
         # 2.5, /my/output/file/for/2.5x/inference.csv
         self.coded_filenames = True # for TCGA work this is FALSE because data was already anon
         # this is not working right now, will produce ground truth map of annotations
-        self.stride_ratio = 2
+        self.high_risk_class = 'HR'
+        self.stride_ratio = 2 #this is how much overlap your original patches were extracted at
         self.writemask = False
         self.simplifyroi = True  # default = False, set to true for complex shapes
         self.nolabel = False  # if all regions in an annotation file belong to the same class, they are labeled as 'tumor'
@@ -121,7 +122,7 @@ class makeMap:
             patch_start = [round(int(i)*self.stride_ratio/phys_size) for i in patch['loc'].split('-')]
             x_count[patch_start[1]:patch_start[1]+self.stride_ratio,patch_start[0]:patch_start[0]+self.stride_ratio] += 1
             x_mask[patch_start[1]:patch_start[1] + self.stride_ratio,patch_start[0]:patch_start[0] + self.stride_ratio] = 1
-            x[patch_start[1]:patch_start[1]+self.stride_ratio,patch_start[0]:patch_start[0]+self.stride_ratio] += patch['HR']
+            x[patch_start[1]:patch_start[1]+self.stride_ratio,patch_start[0]:patch_start[0]+self.stride_ratio] += patch[self.high_risk_class]
 
         x = x/x_count
         slideimg = Image.fromarray(np.uint8(x*255))
