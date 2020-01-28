@@ -38,6 +38,8 @@ class makeMap:
         # this is not working right now, will produce ground truth map of annotations
         self.high_risk_class = 'HR'
         self.stride_ratio = 2 #this is how much overlap your original patches were extracted at
+        
+        #these are all not used right now, in the future i will add flexibility to GT mask output
         self.writemask = False
         self.simplifyroi = True  # default = False, set to true for complex shapes
         self.nolabel = False  # if all regions in an annotation file belong to the same class, they are labeled as 'tumor'
